@@ -13,8 +13,8 @@ for instance in ec2_instances.values():
     try: 
         for pair i instance['Tags']:
             condensed_tags[pair['Key']] = pair['Value']
-        except KeyError:
-            pass
+    except KeyError:
+        pass
 
 
     # Instance is missing required tagging?

@@ -1,5 +1,6 @@
 from modules.config.read_config import read_config
 import os
+import importlib
 
 
 # application settings
@@ -18,8 +19,8 @@ findings = list()
 # iterate through the checks
 checks = list(configuration['CHECKS'].keys())
 for check in checks:
-    from check import findings as new_findings:
-        findings.extend(new_findings)
+    module = importlib.import_module(check)
+    findings.extend(module.findings)
 
 
 print(len(findings))
