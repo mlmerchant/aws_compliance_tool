@@ -1,5 +1,5 @@
 import json
-import modules.findings.finding_id
+from modules.findings.finding_id import generate_finding_arn
 from datetime import datetime
 
 def write_finding(
