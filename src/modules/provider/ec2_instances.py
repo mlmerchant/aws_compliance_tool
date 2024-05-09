@@ -2,7 +2,6 @@ import boto3
 
 ec2_instances = dict()
 
-get_ec2_instances() -> None:
 # populate global dict of all ec2 instances using instance id as key
 ec2_client = boto3.client('ec2')
 reservations = ec2_client.describe_instances()['Reservations']
