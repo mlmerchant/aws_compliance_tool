@@ -11,7 +11,7 @@ def write_finding(
     recommendation_text: str,
     resource_type: str,
     details: dict,
-    security_control_id: dict,
+    security_control_id: str,
     company_name: str,
     product_name: str,
     product_arn: str,
