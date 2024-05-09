@@ -1,4 +1,5 @@
 from modules.config.read_config import read_config
+from modules.findings.write_findings import write_finding
 import os
 import importlib
 
@@ -23,4 +24,12 @@ for check in checks:
     findings.extend(module.findings)
 
 
-print(len(findings))
+# push the findings to ndjson formated file
+for finding in findings:
+    write_finding(
+        **finding,
+        product_name   = configuration['ORGANIZATION']['product_name'],
+        product_arn    = configuration['ORGANIZATION']['product_arn'],
+        company_name   = configuration['ORGANIZATION']['company_name'],
+        results_folder = configuration['RESULTS']['folder']
+            )
