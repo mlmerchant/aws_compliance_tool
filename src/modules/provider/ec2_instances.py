@@ -16,7 +16,7 @@ def populate() -> dict:
                 ip_arn = instance['IamInstanceProfile']['Arn'].split(':')
                 parition = ip_arn[1]
                 account_id = ip_arn[4]
-                region = ["NetworkInterfaces"][0]["PrivateDnsName"].split('.')[1]
+                region = instance["NetworkInterfaces"][0]["PrivateDnsName"].split('.')[1]
                 instance['Arn'] = f"arn:{parition}:ec2:{region}:{account_id}:instance/{resource_id}"
             except KeyError:
                 pass

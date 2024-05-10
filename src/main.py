@@ -33,7 +33,7 @@ for check in checks:
             resource_module = importlib.import_module(requirement)
             resources[resource_name] = resource_module.populate()
 
-    findings.extend(module.run_check())
+    findings.extend(module.run_check(resources))
 
 
 # push the findings to ndjson formated file
