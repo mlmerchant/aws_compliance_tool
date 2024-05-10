@@ -15,7 +15,7 @@ def generate_finding_arn(product_name: str, resource_arn: str, security_control_
   hash_this = product_name + resource_arn + security_control_id
   hashed = hash_key(hash_this)
 
-  resource_arn_split = resource_arn.split(:) 
+  resource_arn_split = resource_arn.split(':') 
   partition = resource_arn_split[1]
   account = resource_arn_split[4]
   product_name = product_name.replace(' ','_')

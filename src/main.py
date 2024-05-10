@@ -28,7 +28,7 @@ for check in checks:
     
     # list of modules needed by check
     for requirement in module.requirements:
-        resource_name = requirement.spit('.')[-1]
+        resource_name = requirement.split('.')[-1]
         if resource_name not in resources:
             resource_module = importlib.import_module(requirement)
             resources[resource_name] = resource_module.populate()

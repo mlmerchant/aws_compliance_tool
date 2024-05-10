@@ -52,8 +52,8 @@ def write_finding(
       'Resources': [
         {
           'Tags': tags,
-          'Type': resource_type
-          'id' resource_arn
+          'Type': resource_type,
+          'id':  resource_arn,
           'Region': region,
           'Details': {
             resource_type: details,

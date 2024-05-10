@@ -4,7 +4,7 @@ import modules.provider.ec2_instances
 requirements = ['modules.provider.ec2_instances']
 
 
-def run_check():
+def run_check(resources: dict) -> list:
     required_tag = "Foobar"
     control_id = "FB.01"
 
@@ -16,7 +16,7 @@ def run_check():
         findings = list()
         condensed_tags = dict()
         try: 
-            for pair i instance['Tags']:
+            for pair in instance['Tags']:
                 condensed_tags[pair['Key']] = pair['Value']
         except KeyError:
             pass
