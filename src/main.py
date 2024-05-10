@@ -14,14 +14,26 @@ if not os.path.exists(results_folder):
     os.makedirs(results_folder)
 
 
+# store list of findings from all checks
 findings = list()
+
+# store shared aws resource details
+resources = dict()
 
 
 # iterate through the checks
 checks = list(configuration['CHECKS'].keys())
 for check in checks:
     module = importlib.import_module(check)
-    findings.extend(module.findings)
+    
+    # list of modules needed by check
+    for requirement in module.requirements:
+        resource_name = requirement.spit('.')[-1]
+        if resource_name not in resources:
+            resource_module = importlib.import_module(requirement)
+            resources[resource_name] = resource_module.populate()
+
+    findings.extend(module.run_check())
 
 
 # push the findings to ndjson formated file
