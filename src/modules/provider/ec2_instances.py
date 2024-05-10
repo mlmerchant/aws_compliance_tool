@@ -1,10 +1,6 @@
 import boto3
 
 
-    f"arn:{parition}:ec2:{region}:{account_id}:instance/{resource_id}"
-
-
-
 # populate global dict of all ec2 instances using instance id as key
 def populate() -> dict:
     resource = dict() 
