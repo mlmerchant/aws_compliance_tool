@@ -10,10 +10,10 @@ def run_check(resources: dict) -> list:
 
 
     ec2_instances = resources['ec2_instances']
-
+    
+    findings = list()
 
     for instance in ec2_instances.values():
-        findings = list()
         condensed_tags = dict()
         try: 
             for pair in instance['Tags']:
