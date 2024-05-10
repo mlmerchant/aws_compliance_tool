@@ -60,9 +60,9 @@ def write_finding(
           }
         }
       ]
-
-      with open(results_folder + '/' +  finding_hash + '.ndjson', 'w') as f:
-          json.dump(finding, f, seperators=(',',':'))
+    }
+    with open(results_folder + '/' +  finding_hash + '.ndjson', 'w') as f:
+        json.dump(finding, f, seperators=(',',':'))
         
-      return None
+    return None
 

@@ -1,5 +1,5 @@
 from modules.config.read_config import read_config
-from modules.findings.write_findings import write_finding
+from modules.findings.write_finding import write_finding
 import os
 import importlib
 
