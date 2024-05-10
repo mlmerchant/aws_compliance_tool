@@ -28,7 +28,7 @@ def run_check(resources: dict) -> list:
                 findings.append(
 
                             {
-                                'resource_arn' : instance['InstanceId'],
+                                'resource_arn' : instance['Arn'],
                                 'tags' : condensed_tags,
                                 'severity' : {'Label':'HIGH','Normalized':70,'Original':'HIGH'},
                                 'title' : f"Missing {required_tag} tag.",

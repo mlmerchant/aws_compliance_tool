@@ -18,6 +18,7 @@ def generate_finding_arn(product_name: str, resource_arn: str, security_control_
   resource_arn_split = resource_arn.split(':') 
   partition = resource_arn_split[1]
   account = resource_arn_split[4]
+  region = resource_arn_split[3]
   product_name = product_name.replace(' ','_')
   
   finding_arn = f"arn:{partition}:{product_name}:{region}:{account}/security-control/{security_control_id}/finding/{hashed}"
