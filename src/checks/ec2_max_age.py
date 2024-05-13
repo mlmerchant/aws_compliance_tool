@@ -15,16 +15,13 @@ def run_check(resources: dict) -> list:
 
 
     
-    today = datetime.now()
+    today = datetime.now().replace(tzinfo=None)
 
 
     for instance in ec2_instances.values():
         
-        iso_date_str = instance['LaunchTime'][0:11]
-        date_object = datetime.fromisoformat(iso_date_str)
-        
-        delta = today_date - date_object
-
+        launch_time = instance['LaunchTime']
+        delta = today - launch_time
         age = delta.days
 
 
