@@ -21,12 +21,22 @@ def run_check(resources: dict) -> list:
     for instance in ec2_instances.values():
         
         launch_time = instance['LaunchTime']
+        launch_time = launch_time.replace(tzinifo=None)
         delta = today - launch_time
         age = delta.days
 
 
-        # Instance is missing required tagging?
-        if age >= max_age_in_days:
+        condensed_tags = dict()
+        try: 
+            for pair in instance['Tags']:
+                condensed_tags[pair['Key']] = pair['Value']
+        except KeyError:
+            pass
+        
+
+
+        # Instance is older than max days?
+        if age > max_age_in_days:
             try:
                 findings.append(
 
@@ -34,7 +44,7 @@ def run_check(resources: dict) -> list:
                                 'resource_arn' : instance['Arn'],
                                 'tags' : condensed_tags,
                                 'severity' : {'Label':'CRITICAL','Normalized':100,'Original':'CRITICAL'},
-                                'title' : f"Missing {required_tag} tag.",
+                                'title' : f"Instance older than {str(max_age_in_days)} days.",
                                 'description' : f"This resource is older than {str(max_age_in_days)}.",
                                 'recommendation_text' : "Delete this resource, and if required, recreate this resource from an approved baseline.",
                                 'recommendation_url' : "https://foobar.foobar.foobar",
