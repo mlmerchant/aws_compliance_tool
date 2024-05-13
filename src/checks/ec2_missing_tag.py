@@ -1,6 +1,3 @@
-import modules.provider.ec2_instances
-
-
 requirements = ['modules.provider.ec2_instances']
 
 
